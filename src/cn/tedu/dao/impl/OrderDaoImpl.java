@@ -10,6 +10,7 @@ import cn.tedu.Utils.DaoUtils;
 import cn.tedu.dao.OrderDao;
 import cn.tedu.domain.Order;
 import cn.tedu.domain.OrderItem;
+import cn.tedu.domain.SaleInfo;
 
 public class OrderDaoImpl implements OrderDao {
 	/**
@@ -87,6 +88,39 @@ public class OrderDaoImpl implements OrderDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return false;
+		}
+	}
+	public void updatePaystate(String r6_Order, int i) {
+		// TODO Auto-generated method stub
+		String sql = "update orders set paystate=? where id=?";
+		try {
+			DaoUtils.update(sql, i,r6_Order);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public Order findOrderByOidForUpdate(String r6_Order) {
+		// TODO Auto-generated method stub
+		String sql = "select * from orders where id =? for update";
+		try {
+			return DaoUtils.query(sql, new BeanHandler<Order>(Order.class), r6_Order);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
+	public List<SaleInfo> findSaleInfo() {
+		// TODO Auto-generated method stub
+		String sql = "select pd.id prod_id,pd.name prod_name,sum(oi.buynum) sale_num from orders od,products pd,orderitem oi where" +
+				"od.id = oi.order_id and oi.product_id = pd.id and od.paystate=1 group by pd.id order by sale_num desc limit 0,100";
+		try {
+			return DaoUtils.query(sql, new BeanListHandler<SaleInfo>(SaleInfo.class));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return new ArrayList<SaleInfo>();
 		}
 	}
 	

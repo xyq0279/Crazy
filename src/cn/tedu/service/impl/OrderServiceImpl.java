@@ -11,6 +11,7 @@ import cn.tedu.domain.Order;
 import cn.tedu.domain.OrderInfo;
 import cn.tedu.domain.OrderItem;
 import cn.tedu.domain.Product;
+import cn.tedu.domain.SaleInfo;
 import cn.tedu.exception.MsgException;
 import cn.tedu.factory.BasicFactory;
 import cn.tedu.service.OrderService;
@@ -79,6 +80,18 @@ public class OrderServiceImpl implements OrderService{
 	public Order findOrderByOid(String oid) {
 		// TODO Auto-generated method stub
 		return orderDao.findOrderByOid(oid);
+	}
+	public void updatePaystate(String r6_Order, int i) {
+		// TODO Auto-generated method stub
+		Order order = orderDao.findOrderByOidForUpdate(r6_Order);
+		if(order.getPaystate()==0&&order!=null){
+			orderDao.updatePaystate(r6_Order,i);
+		}
+		
+	}
+	public List<SaleInfo> findSaleInfo() {
+		
+		return orderDao.findSaleInfo();
 	}
 	
 	

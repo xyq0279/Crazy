@@ -44,7 +44,7 @@
 			<div><a href="${app}/prod_list.jsp" target="rightFrame">> 用户管理</a></div>
 			<div><a href="${app}/prod_list.jsp" target="rightFrame">> 权限管理</a></div>
 			<div><a href="${app}/prod_list.jsp" target="rightFrame">> 订单管理</a></div>
-			<div><a href="${app}/prod_list.jsp" target="rightFrame">> 销售榜单</a></div>
+			<div><a href="${app}/SaleInfoListServlet" target="rightFrame">> 销售榜单</a></div>
 		</div>		
 	</body>
 </html>

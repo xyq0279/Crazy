@@ -5,6 +5,7 @@ import java.util.List;
 
 import cn.tedu.domain.Order;
 import cn.tedu.domain.OrderItem;
+import cn.tedu.domain.SaleInfo;
 
 public interface OrderDao extends Dao{
 	/**
@@ -46,6 +47,12 @@ public interface OrderDao extends Dao{
 	 * @param oid
 	 */
 	boolean delOrderitemByOid(String oid);
+	
+	void updatePaystate(String r6_Order, int i);
+	
+	Order findOrderByOidForUpdate(String r6_Order);
+	
+	List<SaleInfo> findSaleInfo();
 	
 
 }

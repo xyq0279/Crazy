@@ -6,6 +6,7 @@ import cn.tedu.anno.Tran;
 import cn.tedu.domain.Order;
 import cn.tedu.domain.OrderInfo;
 import cn.tedu.domain.OrderItem;
+import cn.tedu.domain.SaleInfo;
 import cn.tedu.exception.MsgException;
 
 public interface OrderService extends Service{
@@ -36,6 +37,10 @@ public interface OrderService extends Service{
 	 * @return
 	 */
 	Order findOrderByOid(String oid);
+	
+	void updatePaystate(String r6_Order, int i);
+	
+	List<SaleInfo> findSaleInfo();
 
 
 }
